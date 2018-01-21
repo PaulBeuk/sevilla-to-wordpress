@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.beuk.sevilla</groupId>
+  <artifactId>beuk-sevilla-to-html</artifactId>
+  <version>0.9.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>beuk sevilla xml to html</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+  	<beuk.wordpress.api>0.5.0</beuk.wordpress.api>  	
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <freemarker.version>2.3.27-incubating</freemarker.version>
+   </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.beuk.wordpress.api</groupId>
+			<artifactId>beuk-wordpress-api</artifactId>
+			<version>${beuk.wordpress.api}</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.freemarker</groupId>
+		  <artifactId>freemarker</artifactId>
+		  <version>${freemarker.version}</version>
+		</dependency>
+		
+	    <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+	    </dependency>
+	</dependencies>
+	
+		<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-dependency-plugin</artifactId>
+		        <version>3.0.0</version>
+		        <executions>
+		          <execution>
+		            <id>copy-dependencies</id>
+		            <phase>package</phase>
+		            <goals>
+		              <goal>copy-dependencies</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>${project.build.directory}/alternateLocation</outputDirectory>
+		              <overWriteReleases>false</overWriteReleases>
+		              <overWriteSnapshots>false</overWriteSnapshots>
+		              <overWriteIfNewer>true</overWriteIfNewer>
+		            </configuration>
+		          </execution>
+		        </executions>
+	      	</plugin>
+
+
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+	</build>	
+</project>

@@ -1,0 +1,4 @@
+<included>
+	<logger name="freemarker.core" level="info" />
+	<logger name="freemarker.template" level="info" />
+</included>
