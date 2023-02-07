@@ -117,7 +117,7 @@ public class Sevilla2WP {
 	void mainRanking() {
 
 		if (configuration.getString("main.generate.ranking").equals("yes")) {
-			log.info("roundDocs: " + roundDocs.size());
+			log.info("rroundDocs: " + roundDocs.size());
 			roundDocs.stream().forEach(dto -> {
 				try {
 					log.info("--------- processing round: " + dto.round);
